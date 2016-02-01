@@ -1,0 +1,19 @@
+1.classpath:app-Beans.xml
+
+  说明：无通配符，必须完全匹配
+
+  classpath:App?-Beans.xml
+  说明：匹配一个字符，例如 App1-Beans.xml 、 App2-Beans.xml
+
+  classpath:user/*/Base-Beans.xml
+  说明：匹配零个或多个字符串（只针对名称，不匹配目录分隔符等），例如：user/a/Base-Beans.xml 、 user/b/Base-Beans.xml ，但是不匹配 user/Base-Beans.xml
+
+  classpath:user/**/Base-Beans.xml
+  说明：匹配路径中的零个或多个目录，例如：user/a/ab/abc/Base-Beans.xml，同时也能匹配 user/Base-Beans.xml
+
+  classpath:**/*-Beans.xml
+  说明：表示在所有的类路径中查找和加载文件名以“-Beans.xml”结尾的配置文件，但重复的文件名只加载其中一个，视加载顺序决定
+
+  classpath*:user/**/*-Beans.xml
+  classpath*:**/*-Beans.xml
+  说明：“classpath*:”表示加载多个资源文件，即使重名也会被加载，比如app1.jar中有一个config-Beans.xml，app2.jar中也有一个config-Beans.xml，这个时候，两个都会加载。

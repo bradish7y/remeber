@@ -1,0 +1,91 @@
+1.java
+    #构造器属性注解
+    @ConstructorProperties({"xx","yy"})
+    public ConstructorBean(int x, String y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    #JSR 330
+        @Inject
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            
+        @Named
+
+
+    #j2ee
+    @Resource(name="")
+        注入指定name的bean，和Qualifier一起用时，还是按Resource注解来处理，Qualifier没有用
+        @Resource
+        @Qualifier("testBean1")
+        private TestBean testBean2 ;
+        最终注入的还是testBean2
+
+
+
+2.spring
+
+@Component
+    如果有使用@Bean，并且有方法多次调用某个被@Bean修饰的方法，则会返回这个Bean的多个实例，而不是Singleton
+    但@Configuration除外
+
+@Required
+    作用在setter上，属性必须配置，否则抛出异常
+
+@Autowired
+    默认按类型，作用在field、method、constructor、setter；如果和Qualifier一起使用，优先按Qualifier注入
+    (id不同，bean相同，但qualifier不同，以qualifier为准)
+
+@Qualifier("main")
+    修改Autowired按bean名字注入，和autowired配置使用
+    当@Bean作用在有参数的方法上时，如果需要注入的bean有多个（id不同，bean相同，qualifier不同），
+    需要使用@Qualifier
+
+@PostConstruct
+    init method
+
+@PreDestroy
+    destroy method
+
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@Scope("prototype")
+    #SCOPE_PROTOTYPE
+        每次注入@AutoWired或@Resource或getBean都是不同的实例
+
+    #SCOPE_SINGLETON
+        每次注入@AutoWired或@Resource或getBean都是同一个实例
+
+@Value
+    注入属性，包括.properties和util标签
+    util*标签，@Value("#{}")
+
+        For example:
+        <util:list id="hobbit" list-class="java.util.ArrayList" value-type="java.lang.String">
+                <value>football</value>
+                <value>baseball</value>
+            </util:list>
+
+        @Bean
+        public Bean method(@Value("#{hobbit}") ArrayList<String> hobbit)
+
+
+    属性文件.properties
+    @Value("${}")
+        For example:
+        <context:property-placeholder location="jdbc.properties" />
+        
+        @Value("${username}")
+
+    想要-D覆盖.properties，必须加<context:property-placeholder/>配置，即使没有properties文件
+
+@Bean(name={"a", "b"})
+    alias name
+
+@ImportResource("classpath:/com/acme/properties-config.xml")
+
+
+

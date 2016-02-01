@@ -1,0 +1,19 @@
+切换<beans profile="dev/prod"/>
+    #web方式
+    <init-param>
+        <param-name>spring.profiles.active</param-name>
+        <param-value>prod</param-value>
+    </init-param>
+
+
+    #app
+    GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
+    ctx.getEnvironment().setActiveProfiles("standalone");
+    ctx.load("*Context.xml");
+    ctx.refresh();
+
+    #环境变量
+    -Dspring.profiles.active="standalone"
+
+    #单元测试
+    @ActiveProfiles()

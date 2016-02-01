@@ -1,0 +1,35 @@
+1.
+/**
+以下两次clientDao是同一个实例；但Component时，是2个实例
+参考Book和AppConfig
+**/
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public TestBean aBean(){
+
+        //同一个bean
+        System.out.println("in aBean:" + clientDao());
+        return new TestBean();
+    }
+
+    @Bean
+    public TestBean bBean(){
+
+        //同一个bean
+        System.out.println("in bBean:" + clientDao());
+        return new TestBean();
+    }
+
+
+    @Bean
+    //@Scope("prototype")
+    public ClientDao clientDao(){
+        return new ClientDaoImpl() ;
+    }
+}
+
+2.如果在@Configuration中已经@Bean创建了一个Bean，那么在@Component中的同名Bean不会被创建
+
+3.

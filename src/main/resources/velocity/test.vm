@@ -1,0 +1,43 @@
+#macro( print $args)
+    $args
+#end
+
+#set( $iAmVariable = "good!" )
+
+Welcome $name to velocity.com
+today is $date.
+
+My habits:
+#set($i=0)
+#foreach ($habit in $habits)
+    $i: $habit
+    #set($i=$i+1)
+#end
+
+$iAmVariable
+
+足球明星:
+$person.name
+$person.country
+$person.address
+$!person.abc
+##i am comment
+#*
+i am mutlip lines comment
+ *#
+Not exists var: $!var
+
+#foreach( $i in [1..5])
+    $i
+#end
+
+#set( $var = 2)
+#if( $var == 1 && 1==1)
+is 1
+#elseif( $var == 2)
+is 2
+#else
+is not 1
+#end
+
+#print( 123 )

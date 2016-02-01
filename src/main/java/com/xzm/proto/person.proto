@@ -1,0 +1,21 @@
+
+//option java_package = "com.xzm.proto";
+option java_outer_classname = "ProtoBufferPractice";
+
+message MsgInfo  {
+    /**
+    *xingzhiming
+    **/
+    required int32 ID = 1;
+    required int64 GoodID = 2;
+    required string Url = 3;
+    required string Guid = 4;
+    required string Type = 5;
+    required int32 Order = 6;
+
+    message PhoneNumber {
+        required string number = 1 [default="999000"];
+
+    }
+
+}
