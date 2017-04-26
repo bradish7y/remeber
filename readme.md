@@ -12,3 +12,4 @@
 ##taobao
 ##velocity
 ##zookeeper
+##test

@@ -12,9 +12,9 @@ import java.nio.charset.CharsetEncoder;
 /**
  * Created by Bradish7Y on 16/2/15.
  */
-public class Common {
+public class Common { 
     public static void main(String[] args) {
-        String s = "看到九分裤垃圾卡德罗夫卡拉斯京风口浪尖阿斯科利发动机咖喱饭打了";
+        String s = "111";
         Charset cs = Charset.forName("UTF-8");
         ByteBuffer byteBuffer = cs.encode(s);
         CharBuffer charBuffer = cs.decode(byteBuffer);
